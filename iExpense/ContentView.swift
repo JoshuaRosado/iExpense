@@ -74,6 +74,7 @@ struct ContentView: View {
                         
                         // Display item amount on .trailing side
                         Text(item.amount, format:.currency(code:item.currency))
+                            .foregroundStyle(item.amount < 10 ? .yellow : item.amount < 100 ? .orange : item.amount >= 100 ? .red : .black)
                     }
                 }
                 .onDelete(perform: removeItems)
