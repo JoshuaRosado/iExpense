@@ -48,6 +48,38 @@ class Expenses {
     }
 }
 
+//@Observable
+//class Expenses {
+//    var items = [ExpenseItem](){
+//        didSet {
+//            // ENCODE the Objects created into JSON
+//            if let encoded = try? JSONEncoder().encode(items) {
+//                // and Save it using UserDefaults.
+//                UserDefaults.standard.set(encoded, forKey: "Items")
+//            }
+//        }
+//    }
+//     
+//    init() { // New Initializer
+//        
+//        // if savedItems from UserDefaults
+//        if let savedItems = UserDefaults.standard.data(forKey: "Items") {
+//            // Copy the code from savedItems
+//            if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: savedItems) {
+//                // The new Object is now The returning Object saved from UserDefault as DECODED
+//                items = decodedItems
+//                return
+//            }
+//        }
+//        // if not return an empty array
+//        
+//        items = []
+//    }
+//}
+
+
+
+
 
 struct ContentView: View {
     @State private var expenses = Expenses()
@@ -61,20 +93,24 @@ struct ContentView: View {
                 
                 ForEach(expenses.items, id: \.id){ item in
                     
-                    // Display item name and item type on .leading side
-                    HStack{
-                        VStack(alignment: .leading){
-                            Text(item.name)
-                                .font(.headline)
-                            
-                            Text(item.type)
-                        }
-                        // spacer in between the two objects Horizontally
-                        Spacer()
                         
-                        // Display item amount on .trailing side
-                        Text(item.amount, format:.currency(code:item.currency))
-                            .foregroundStyle(item.amount < 10 ? .yellow : item.amount < 100 ? .orange : item.amount >= 100 ? .red : .black)
+                    
+                    if item.type == "Personal"{
+                        
+                        HStack{
+                            VStack(alignment: .leading){
+                                Text(item.name)
+                                    .font(.headline)
+                                
+                                Text(item.type)
+                            }
+                            
+                            Spacer()
+                            
+                            
+                            Text(item.amount, format:.currency(code:item.currency))
+                                .foregroundStyle(item.amount < 10 ? .yellow : item.amount < 100 ? .orange : item.amount >= 100 ? .red : .black)
+                        }
                     }
                 }
                 .onDelete(perform: removeItems)
