@@ -15,7 +15,10 @@ struct AddView: View {
     @State private var amount = 0.0
     @State private var currency = "USD"
     
-    var expenses : Expenses
+//    var expenses : Expenses
+    
+    var business : Business
+    var personal : Personal
     
     let currencies = ["AED", "AUD", "BZD", "DKK", "EUR", "GBP", "JPY", "KES", "MXN", "OMR", "STD", "USD", "XCD", "ZWD"]
     let types = ["Business", "Personal"]
@@ -49,7 +52,14 @@ struct AddView: View {
             .toolbar{
                 Button("Save") {
                     let item = ExpenseItem(name: name, type: type, amount: amount, currency: currency)
-                    expenses.items.append(item)
+                    if item.type == "Personal"{
+                       personal.personalItems.append(item)
+                        print(personal.personalItems)
+                    }
+                    else if item.type == "Business"{
+                        business.businessItems.append(item)
+                    }
+                    
                     dismiss() // dismiss sheet when Save btn is selected
                 }
             }
@@ -58,5 +68,5 @@ struct AddView: View {
 }
 
 #Preview {
-    AddView(expenses: Expenses())
+    AddView(business: Business(), personal: Personal())
 }
