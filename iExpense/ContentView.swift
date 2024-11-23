@@ -91,7 +91,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section{
+                Section("Personal Expenses"){
                     
                     
                     ForEach(expenses.items, id: \.id){ item in
@@ -116,7 +116,7 @@ struct ContentView: View {
                     .onDelete(perform: removeItems)
                 }
                 
-                Section{
+                Section("Business Expenses"){
                     
                     
                     ForEach(businessExpenses.businessItems, id: \.id){ item in
