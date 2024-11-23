@@ -15,10 +15,11 @@ struct AddView: View {
     @State private var amount = 0.0
     @State private var currency = "USD"
     
-//    var expenses : Expenses
     
-    var business : Business
-    var personal : Personal
+    var expenses : Expenses
+    var businessExpenses: BusinessExpenses
+    
+    
     
     let currencies = ["AED", "AUD", "BZD", "DKK", "EUR", "GBP", "JPY", "KES", "MXN", "OMR", "STD", "USD", "XCD", "ZWD"]
     let types = ["Business", "Personal"]
@@ -44,29 +45,38 @@ struct AddView: View {
                             Text($0)
                         }
                     }
-                
+                    
                 }
                 
             }
             .navigationTitle("Add new expense")
             .toolbar{
-                Button("Save") {
-                    let item = ExpenseItem(name: name, type: type, amount: amount, currency: currency)
-                    if item.type == "Personal"{
-                       personal.personalItems.append(item)
-                        print(personal.personalItems)
-                    }
-                    else if item.type == "Business"{
-                        business.businessItems.append(item)
+                let item = ExpenseItem(name: name, type: type, amount: amount, currency: currency)
+                if item.type == "Personal"{
+                    
+                    
+                    Button("Save") {
+                        
+                        
+                        expenses.items.append(item)
+                        dismiss() // dismiss sheet when Save btn is selected
                     }
                     
-                    dismiss() // dismiss sheet when Save btn is selected
+                } else if item.type == "Business"{
+                    
+                    
+                    Button("Save") {
+                        
+                        
+                        businessExpenses.businessItems.append(item)
+                        dismiss() // dismiss sheet when Save btn is selected
+                    }
+                    
                 }
             }
         }
     }
 }
-
-#Preview {
-    AddView(business: Business(), personal: Personal())
-}
+//#Preview {
+//    AddView(expenses: Expenses())
+//}
