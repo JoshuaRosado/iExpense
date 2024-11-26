@@ -16,7 +16,7 @@ struct AddView: View {
     @State private var currency = "USD"
     
     
-    var expenses : PersonalExpenses
+    var personalExpenses : PersonalExpenses
     var businessExpenses: BusinessExpenses
     
     
@@ -58,7 +58,7 @@ struct AddView: View {
                     Button("Save") {
                         
                         
-                        expenses.items.append(item)
+                        personalExpenses.personalItems.append(item)
                         dismiss() // dismiss sheet when Save btn is selected
                     }
                     

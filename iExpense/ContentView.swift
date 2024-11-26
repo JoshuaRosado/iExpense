@@ -21,12 +21,12 @@ struct ExpenseItem: Identifiable, Codable {
 
 @Observable
 class PersonalExpenses {
-    var items = [ExpenseItem](){
+    var personalItems = [ExpenseItem](){
         didSet {
             // ENCODE the Objects created into JSON
-            if let encoded = try? JSONEncoder().encode(items) {
+            if let encoded = try? JSONEncoder().encode(personalItems) {
                 // and Save it using UserDefaults.
-                UserDefaults.standard.set(encoded, forKey: "Items")
+                UserDefaults.standard.set(encoded, forKey: "PersonalItems")
             }
         }
     }
@@ -34,17 +34,17 @@ class PersonalExpenses {
     init() { // New Initializer
         
         // if savedItems from UserDefaults
-        if let savedItems = UserDefaults.standard.data(forKey: "Items") {
+        if let savedItems = UserDefaults.standard.data(forKey: "PersonalItems") {
             // Copy the code from savedItems
             if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: savedItems) {
                 // The new Object is now The returning Object saved from UserDefault as DECODED
-                items = decodedItems
+                personalItems = decodedItems
                 return
             }
         }
         // if not return an empty array
         
-        items = []
+        personalItems = []
     }
 }
 
@@ -82,7 +82,7 @@ class BusinessExpenses {
 
 
 struct ContentView: View {
-    @State private var expenses = PersonalExpenses()
+    @State private var personalExpenses = PersonalExpenses()
     @State private var businessExpenses = BusinessExpenses()
     let types = ["Personal", "Business"]
     
@@ -94,7 +94,7 @@ struct ContentView: View {
                 Section("Personal Expenses"){
                     
                     
-                    ForEach(expenses.items, id: \.id){ item in
+                    ForEach(personalExpenses.personalItems, id: \.id){ item in
                         if item.type == "Personal"{
                             
                             HStack{
@@ -153,14 +153,14 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $showingAddExpense){
-                AddView(expenses: expenses, businessExpenses: businessExpenses)
+                AddView(personalExpenses: personalExpenses, businessExpenses: businessExpenses)
             }
             
         }
-    }
+    } 
     
     func removeItems(at offsets: IndexSet){
-        expenses.items.remove(atOffsets: offsets)
+        personalExpenses.personalItems.remove(atOffsets: offsets)
     }
     
     func removeBusinessItems(at offsets: IndexSet){
