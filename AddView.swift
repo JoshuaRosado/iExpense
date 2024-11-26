@@ -16,7 +16,7 @@ struct AddView: View {
     @State private var currency = "USD"
     
     
-    var expenses : Expenses
+    var expenses : PersonalExpenses
     var businessExpenses: BusinessExpenses
     
     

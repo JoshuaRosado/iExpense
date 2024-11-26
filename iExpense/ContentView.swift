@@ -20,7 +20,7 @@ struct ExpenseItem: Identifiable, Codable {
 }
 
 @Observable
-class Expenses {
+class PersonalExpenses {
     var items = [ExpenseItem](){
         didSet {
             // ENCODE the Objects created into JSON
@@ -82,7 +82,7 @@ class BusinessExpenses {
 
 
 struct ContentView: View {
-    @State private var expenses = Expenses()
+    @State private var expenses = PersonalExpenses()
     @State private var businessExpenses = BusinessExpenses()
     let types = ["Personal", "Business"]
     
