@@ -84,6 +84,7 @@ class BusinessExpenses {
 struct ContentView: View {
     @State private var personalExpenses = PersonalExpenses()
     @State private var businessExpenses = BusinessExpenses()
+    @State private var totalExpenses = 0
     let types = ["Personal", "Business"]
     
     @State private var showingAddExpense = false
@@ -138,7 +139,14 @@ struct ContentView: View {
                     }
                     .onDelete(perform: removeBusinessItems)
                 }
+                HStack{
+                    Text("Total :")
+                    Spacer()
+                    Text("$\(totalExpenses)")
+                }
             }
+            
+            
             .navigationTitle("iExpense")
             .toolbar {
                 EditButton()
@@ -157,7 +165,7 @@ struct ContentView: View {
             }
             
         }
-    } 
+    }
     
     func removeItems(at offsets: IndexSet){
         personalExpenses.personalItems.remove(atOffsets: offsets)
