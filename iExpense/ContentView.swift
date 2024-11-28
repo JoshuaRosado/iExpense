@@ -85,6 +85,9 @@ struct ContentView: View {
     @State private var personalExpenses = PersonalExpenses()
     @State private var businessExpenses = BusinessExpenses()
     @State private var totalExpenses = 0
+    @State private var totalBusiness = 0
+    @State private var totalPersonal = 0
+
     let types = ["Personal", "Business"]
     
     @State private var showingAddExpense = false
@@ -108,7 +111,6 @@ struct ContentView: View {
                                 
                                 Spacer()
                                 
-                                
                                 Text(item.amount, format:.currency(code:item.currency))
                                     .foregroundStyle(item.amount < 10 ? .yellow : item.amount < 100 ? .orange : item.amount >= 100 ? .red : .black)
                             }
@@ -121,6 +123,8 @@ struct ContentView: View {
                     
                     
                     ForEach(businessExpenses.businessItems, id: \.id){ item in
+                        
+                        
                         
                         HStack{
                             VStack(alignment: .leading){
@@ -135,15 +139,13 @@ struct ContentView: View {
                             
                             Text(item.amount, format:.currency(code:item.currency))
                                 .foregroundStyle(item.amount < 10 ? .yellow : item.amount < 100 ? .orange : item.amount >= 100 ? .red : .black)
+                            
                         }
                     }
                     .onDelete(perform: removeBusinessItems)
+                    
                 }
-                HStack{
-                    Text("Total :")
-                    Spacer()
-                    Text("$\(totalExpenses)")
-                }
+                
             }
             
             
@@ -166,6 +168,7 @@ struct ContentView: View {
             
         }
     }
+    
     
     func removeItems(at offsets: IndexSet){
         personalExpenses.personalItems.remove(atOffsets: offsets)
