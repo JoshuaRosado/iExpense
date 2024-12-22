@@ -152,21 +152,30 @@ struct ContentView: View {
             .navigationTitle("iExpense")
             .toolbar {
                 EditButton()
-                Button("Add Expense", systemImage: "plus"){
                 
-                
+                // CHALLENGE 1
+                // REPLACE .sheet for NavigationLink
+                NavigationLink{
                     
-                    showingAddExpense = true
-                    
-                    
-                    
+                    AddView(personalExpenses: personalExpenses, businessExpenses: businessExpenses)
+                        .navigationBarBackButtonHidden()
+                } label: {
+                    Image(systemName: "plus")
                 }
+                
+
+//                Button("Add Expense", systemImage: "plus"){
+//                    showingAddExpense = true
+//
+//                }
             }
-            .sheet(isPresented: $showingAddExpense){
-                AddView(personalExpenses: personalExpenses, businessExpenses: businessExpenses)
-            }
+
+//            .sheet(isPresented: $showingAddExpense){
+//                AddView(personalExpenses: personalExpenses, businessExpenses: businessExpenses)
+//            }
             
         }
+        
     }
     
     

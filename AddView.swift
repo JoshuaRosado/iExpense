@@ -51,32 +51,44 @@ struct AddView: View {
             }
             .navigationTitle("Add new expense")
             .toolbar{
-                let item = ExpenseItem(name: name, type: type, amount: amount, currency: currency)
-                if item.type == "Personal"{
-                    
-                    
-                    Button("Save") {
-                        
-                        
-                        personalExpenses.personalItems.append(item)
-                        dismiss() // dismiss sheet when Save btn is selected
+                
+                // CHALLENGE 1
+                // Hide navigationBar back btn and add a Cancel Btn
+                
+                
+                ToolbarItem(placement: .topBarLeading){
+                    Button("Cancel"){
+                        dismiss()
                     }
-                    
-                } else if item.type == "Business"{
-                    
-                    
-                    Button("Save") {
+                }
+                ToolbarItem(placement: .topBarTrailing){
+                    let item = ExpenseItem(name: name, type: type, amount: amount, currency: currency)
+                    if item.type == "Personal"{
                         
                         
-                        businessExpenses.businessItems.append(item)
-                        dismiss() // dismiss sheet when Save btn is selected
+                        Button("Save") {
+                            
+                            
+                            personalExpenses.personalItems.append(item)
+                            dismiss() // dismiss sheet when Save btn is selected
+                        }
+                        
+                    } else if item.type == "Business"{
+                        
+                        
+                        Button("Save") {
+                            
+                            
+                            businessExpenses.businessItems.append(item)
+                            dismiss() // dismiss sheet when Save btn is selected
+                        }
+                        
                     }
-                    
                 }
             }
         }
     }
 }
-//#Preview {
-//    AddView(expenses: Expenses())
-//}
+#Preview {
+    ContentView()
+}
