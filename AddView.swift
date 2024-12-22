@@ -10,7 +10,7 @@ import SwiftUI
 struct AddView: View {
     @Environment(\.dismiss) var dismiss // add a dismiss action
     
-    @State private var name = ""
+    @State private var name = "Edit Name"
     @State private var type = "Personal"
     @State private var amount = 0.0
     @State private var currency = "USD"
@@ -26,7 +26,6 @@ struct AddView: View {
     var body: some View {
         NavigationStack {
             Form {
-                TextField("Name", text: $name)
                 
                 Picker("Type", selection: $type) {
                     ForEach(types, id: \.self){
@@ -49,7 +48,12 @@ struct AddView: View {
                 }
                 
             }
-            .navigationTitle("Add new expense")
+            
+            // CHALLENGE 2
+            // Let users edit their issue name in the nav title rather than a separate textfield.
+            
+            .navigationTitle($name)
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar{
                 
                 // CHALLENGE 1
