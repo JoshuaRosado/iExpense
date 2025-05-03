@@ -4,78 +4,70 @@
 //
 //  Created by Joshua Rosado Olivencia on 11/13/24.
 //
-
+import SwiftData
 import SwiftUI
 
 
 
-struct ExpenseItem: Identifiable, Codable {
 
-    
-    var id = UUID()
-    let name: String
-    let type: String
-    let amount: Double
-    let currency: String
-}
 
-@Observable
-class PersonalExpenses {
-    var personalItems = [ExpenseItem](){
-        didSet {
-            // ENCODE the Objects created into JSON
-            if let encoded = try? JSONEncoder().encode(personalItems) {
-                // and Save it using UserDefaults.
-                UserDefaults.standard.set(encoded, forKey: "PersonalItems")
-            }
-        }
-    }
+
+//class PersonalExpenses {
+//    var personalItems = [ExpenseItem](){
+//        didSet {
+//            // ENCODE the Objects created into JSON
+//            if let encoded = try? JSONEncoder().encode(personalItems) {
+//                // and Save it using UserDefaults.
+//                UserDefaults.standard.set(encoded, forKey: "PersonalItems")
+//            }
+//        }
+//    }
      
-    init() { // New Initializer
-        
-        // if savedItems from UserDefaults
-        if let savedItems = UserDefaults.standard.data(forKey: "PersonalItems") {
-            // Copy the code from savedItems
-            if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: savedItems) {
-                // The new Object is now The returning Object saved from UserDefault as DECODED
-                personalItems = decodedItems
-                return
-            }
-        }
-        // if not return an empty array
-        
-        personalItems = []
-    }
-}
-
-@Observable
-class BusinessExpenses {
-    var businessItems = [ExpenseItem](){
-        didSet {
-            // ENCODE the Objects created into JSON
-            if let encoded = try? JSONEncoder().encode(businessItems) {
-                // and Save it using UserDefaults.
-                UserDefaults.standard.set(encoded, forKey: "BusinessItems")
-            }
-        }
-    }
+//    init() { // New Initializer
+//        
+//        // if savedItems from UserDefaults
+//        if let savedItems = UserDefaults.standard.data(forKey: "PersonalItems") {
+//            // Copy the code from savedItems
+//            if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: savedItems) {
+//                // The new Object is now The returning Object saved from UserDefault as DECODED
+//                personalItems = decodedItems
+//                return
+//            }
+//        }
+//        // if not return an empty array
+//        
+//        personalItems = []
+//    }
+//}
+//
+//@Observable
+//class BusinessExpenses {
+//    var businessItems = [ExpenseItem](){
+//        didSet {
+//            // ENCODE the Objects created into JSON
+//            if let encoded = try? JSONEncoder().encode(businessItems) {
+//                // and Save it using UserDefaults.
+//                UserDefaults.standard.set(encoded, forKey: "BusinessItems")
+//            }
+//        }
+//    }
      
-    init() { // New Initializer
-        
-        // if savedItems from UserDefaults
-        if let savedItems = UserDefaults.standard.data(forKey: "BusinessItems") {
-            // Copy the code from savedItems
-            if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: savedItems) {
-                // The new Object is now The returning Object saved from UserDefault as DECODED
-                businessItems = decodedItems
-                return
-            }
-        }
-        // if not return an empty array
-        
-        businessItems = []
-    }
-}
+//    init() { // New Initializer
+//        
+//        // if savedItems from UserDefaults
+//        if let savedItems = UserDefaults.standard.data(forKey: "BusinessItems") {
+//            // Copy the code from savedItems
+//            if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: savedItems) {
+//                // The new Object is now The returning Object saved from UserDefault as DECODED
+//                businessItems = decodedItems
+//                return
+//            }
+//        }
+//        // if not return an empty array
+//        
+//        businessItems = []
+//    }
+//}
 
 
 

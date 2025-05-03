@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A2445FF92DC64B4300A194C7 /* PersonalExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2445FF82DC64B4300A194C7 /* PersonalExpense.swift */; };
+		A2445FFB2DC64B9600A194C7 /* BusinessExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2445FFA2DC64B9600A194C7 /* BusinessExpense.swift */; };
 		A26928A82CEAD82B00C9D85A /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26928A72CEAD82B00C9D85A /* AddView.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A2445FF82DC64B4300A194C7 /* PersonalExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalExpense.swift; sourceTree = "<group>"; };
+		A2445FFA2DC64B9600A194C7 /* BusinessExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessExpense.swift; sourceTree = "<group>"; };
 		A26928682CE5581000C9D85A /* iExpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iExpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A26928782CE5581400C9D85A /* iExpenseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iExpenseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A26928822CE5581400C9D85A /* iExpenseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iExpenseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +98,8 @@
 		A269285F2CE5581000C9D85A = {
 			isa = PBXGroup;
 			children = (
+				A2445FF82DC64B4300A194C7 /* PersonalExpense.swift */,
+				A2445FFA2DC64B9600A194C7 /* BusinessExpense.swift */,
 				A26928A72CEAD82B00C9D85A /* AddView.swift */,
 				A269286A2CE5581000C9D85A /* iExpense */,
 				A269287B2CE5581400C9D85A /* iExpenseTests */,
@@ -258,6 +264,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A26928A82CEAD82B00C9D85A /* AddView.swift in Sources */,
+				A2445FF92DC64B4300A194C7 /* PersonalExpense.swift in Sources */,
+				A2445FFB2DC64B9600A194C7 /* BusinessExpense.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +426,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iExpense/Preview Content\"";
+				DEVELOPMENT_TEAM = 3GB3M4K3G7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -446,6 +455,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iExpense/Preview Content\"";
+				DEVELOPMENT_TEAM = 3GB3M4K3G7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
