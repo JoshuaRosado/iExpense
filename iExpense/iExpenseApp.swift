@@ -7,7 +7,8 @@
 import SwiftData
 import SwiftUI
 
-
+ // Challenge 1 (Day-59)
+// Upgrade to SwiftData
 @main
 struct iExpenseApp: App {
     var body: some Scene {

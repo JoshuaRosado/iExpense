@@ -19,13 +19,14 @@ class ExpenseItem {
     var type: String
     var amount: Double
     var currency: String
+    var date : Date
     
-    init(id: UUID = UUID(), name: String, type: String, amount: Double, currency: String) {
-        self.id = id
+    init (name: String, type: String, amount: Double, currency: String, date: Date) {
         self.name = name
         self.type = type
         self.amount = amount
         self.currency = currency
+        self.date = date
     }
     
 }

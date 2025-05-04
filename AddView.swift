@@ -66,7 +66,7 @@ struct AddView: View {
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing){
-                    let item = ExpenseItem(name: name, type: type, amount: amount, currency: currency)
+                    let item = ExpenseItem(name: name, type: type, amount: amount, currency: currency, date: .now)
                     if item.type == "Personal"{
                         
                         

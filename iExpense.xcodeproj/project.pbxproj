@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A2445FF92DC64B4300A194C7 /* PersonalExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2445FF82DC64B4300A194C7 /* PersonalExpense.swift */; };
 		A2445FFB2DC64B9600A194C7 /* BusinessExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2445FFA2DC64B9600A194C7 /* BusinessExpense.swift */; };
+		A24460112DC8108D00A194C7 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24460102DC8108D00A194C7 /* Home.swift */; };
 		A26928A82CEAD82B00C9D85A /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26928A72CEAD82B00C9D85A /* AddView.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		A2445FF82DC64B4300A194C7 /* PersonalExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalExpense.swift; sourceTree = "<group>"; };
 		A2445FFA2DC64B9600A194C7 /* BusinessExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessExpense.swift; sourceTree = "<group>"; };
+		A24460102DC8108D00A194C7 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		A26928682CE5581000C9D85A /* iExpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iExpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A26928782CE5581400C9D85A /* iExpenseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iExpenseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A26928822CE5581400C9D85A /* iExpenseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iExpenseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +100,7 @@
 		A269285F2CE5581000C9D85A = {
 			isa = PBXGroup;
 			children = (
+				A24460102DC8108D00A194C7 /* Home.swift */,
 				A2445FF82DC64B4300A194C7 /* PersonalExpense.swift */,
 				A2445FFA2DC64B9600A194C7 /* BusinessExpense.swift */,
 				A26928A72CEAD82B00C9D85A /* AddView.swift */,
@@ -266,6 +269,7 @@
 				A26928A82CEAD82B00C9D85A /* AddView.swift in Sources */,
 				A2445FF92DC64B4300A194C7 /* PersonalExpense.swift in Sources */,
 				A2445FFB2DC64B9600A194C7 /* BusinessExpense.swift in Sources */,
+				A24460112DC8108D00A194C7 /* Home.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
