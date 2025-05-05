@@ -9,94 +9,48 @@ import SwiftData
 import SwiftUI
 
 struct Home: View {
-    @State private var personalExpenses = PersonalExpenses()
-    @State private var businessExpenses = BusinessExpenses()
-    @State private var totalExpenses = 0
-    @State private var totalBusiness = 0
-    @State private var totalPersonal = 0
     
-    let types = ["Personal", "Business"]
-    
-    @State private var showingAddExpense = false
     
     var body: some View {
         NavigationStack {
-            List {
-                Section("Personal Expenses"){
-                    
-                    ForEach(personalExpenses.personalItems, id: \.id){ item in
-                        if item.type == "Personal"{
-                            
-                            HStack{
-                                VStack(alignment: .leading){
-                                    Text(item.name)
-                                        .font(.headline)
-                                    
-                                    Text(item.type)
-                                }
-                                
-                                Spacer()
-                                
-                                Text(item.amount, format:.currency(code:item.currency))
-                                    .foregroundStyle(item.amount < 10 ? .yellow : item.amount < 100 ? .orange : item.amount >= 100 ? .red : .black)
-                            }
-                        }
-                    }
-                    .onDelete(perform: removeItems)
-                }
-                .padding(.vertical)
-                
-                Section("Business Expenses"){
-                    
-                    
-                    ForEach(businessExpenses.businessItems, id: \.id){ item in
-                        
-                        
-                        
-                        HStack{
-                            VStack(alignment: .leading){
-                                Text(item.name)
-                                    .font(.headline)
-                                
-                                Text(item.type)
-                            }
-                            
-                            Spacer()
-                            
-                            
-                            Text(item.amount, format:.currency(code:item.currency))
-                                .foregroundStyle(item.amount < 10 ? .yellow : item.amount < 100 ? .orange : item.amount >= 100 ? .red : .black)
-                            
-                        }
-                        .padding(.vertical)
-                    }
-                    .onDelete(perform: removeBusinessItems)
-                    
-                }
-                
-                
-                
-            }
+            Home()
             
             
             
             .navigationTitle("iExpense")
             .toolbar {
-                EditButton()
-                    .padding(.horizontal)
-                    .padding(.trailing )
+                
+                ToolbarItem(placement: .secondaryAction){
+                    EditButton()
+                        .padding(.horizontal)
+                        .padding(.trailing )
+                    Menu("Sort", systemImage: "arrow.up.arrow.down")
+                    Picker("Sort", selection: $sortOrder){
+                        Text("Sort by Amount")
+                            .tag([
+                                SortDescriptor(\ExpenseItem.amount)
+                            ])
+                        
+                        Text("Sort by Date")
+                            .tag([
+                                SortDescriptor(\ExpenseItem.date)
+                            ])
+                    }
+                }
+                }
                 // CHALLENGE 1
                 // REPLACE .sheet for NavigationLink
-                NavigationLink{
+                ToolbarItem(placement: .trailing){
+                    NavigationLink{
+                        
+                        AddView(personalExpenses: personalExpenses, businessExpenses: businessExpenses)
+                            .navigationBarBackButtonHidden()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                    .padding(.trailing)
                     
-                    AddView(personalExpenses: personalExpenses, businessExpenses: businessExpenses)
-                        .navigationBarBackButtonHidden()
-                } label: {
-                    Image(systemName: "plus")
                 }
-                .padding(.trailing)
-                
-                
             }
             
         }
