@@ -7,8 +7,11 @@
 import SwiftData
 import SwiftUI
 
+
 struct ExpensesView: View {
+    // Load all ExpenseItems
     @Query var expenseItems: [ExpenseItem]
+
     
     @State private var personalExpenses = PersonalExpenses()
     @State private var businessExpenses = BusinessExpenses()
@@ -77,10 +80,31 @@ struct ExpensesView: View {
             
             
         }
-        
     }
+        
+        func removeItems(at offsets: IndexSet){
+            personalExpenses.personalItems.remove(atOffsets: offsets)
+        }
+        
+        func removeBusinessItems(at offsets: IndexSet){
+            businessExpenses.businessItems.remove(atOffsets: offsets)
+            
+            
+            
+        }
+        
+        
+    
+    init(transactionDate: Date, sortOrder: [SortDescriptor<ExpenseItem>]) {
+        _expenseItems = Query(filter: #Predicate<ExpenseItem> {
+            expenseItem in
+            expenseItem.date >= transactionDate
+        } , sort: sortOrder)
+    }
+
 }
 
 #Preview {
-    ExpensesView()
+    ExpensesView(transactionDate: .now, sortOrder: [SortDescriptor(\ExpenseItem.name)])
+        .modelContainer(for:ExpenseItem.self)
 }

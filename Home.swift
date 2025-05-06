@@ -10,21 +10,26 @@ import SwiftUI
 
 struct Home: View {
     
+    @State private var personalExpenses = PersonalExpenses()
+    @State private var businessExpenses = BusinessExpenses()
+    @State private var sortOrder = [SortDescriptor(\ExpenseItem.amount), SortDescriptor(\ExpenseItem.date),
+    ]
+    @State private var showingRecent = false
     
     var body: some View {
         NavigationStack {
-            Home()
+            ExpensesView(transactionDate: showingRecent ? .now : .distantPast, sortOrder: sortOrder)
             
             
             
-            .navigationTitle("iExpense")
-            .toolbar {
-                
-                ToolbarItem(placement: .secondaryAction){
+                .navigationTitle("iExpense")
+                .toolbar {
+                    
                     EditButton()
                         .padding(.horizontal)
                         .padding(.trailing )
-                    Menu("Sort", systemImage: "arrow.up.arrow.down")
+                    
+                    
                     Picker("Sort", selection: $sortOrder){
                         Text("Sort by Amount")
                             .tag([
@@ -37,36 +42,22 @@ struct Home: View {
                             ])
                     }
                 }
-                }
-                // CHALLENGE 1
-                // REPLACE .sheet for NavigationLink
-                ToolbarItem(placement: .trailing){
-                    NavigationLink{
-                        
-                        AddView(personalExpenses: personalExpenses, businessExpenses: businessExpenses)
-                            .navigationBarBackButtonHidden()
-                    } label: {
-                        Image(systemName: "plus")
-                    }
-                    .padding(.trailing)
-                    
-                }
+            
+            
+            // CHALLENGE 1
+            // REPLACE .sheet for NavigationLink
+            NavigationLink{
+                
+                AddView(personalExpenses: personalExpenses, businessExpenses: businessExpenses)
+                    .navigationBarBackButtonHidden()
+            } label: {
+                Image(systemName: "plus")
             }
+            .padding(.trailing)
             
         }
-        
     }
     
-    func removeItems(at offsets: IndexSet){
-        personalExpenses.personalItems.remove(atOffsets: offsets)
-    }
-    
-    func removeBusinessItems(at offsets: IndexSet){
-        businessExpenses.businessItems.remove(atOffsets: offsets)
-        
-        
-        
-    }
 }
 
 
