@@ -11,8 +11,6 @@ import SwiftUI
 struct ExpensesView: View {
     // Load all ExpenseItems
     @Query var expenseItems: [ExpenseItem]
-
-    
     @State private var personalExpenses = PersonalExpenses()
     @State private var businessExpenses = BusinessExpenses()
     @State private var totalExpenses = 0
@@ -27,7 +25,7 @@ struct ExpensesView: View {
         List {
             Section("Personal Expenses"){
                 
-                ForEach(personalExpenses.personalItems, id: \.id){ item in
+                ForEach(expenseItems.filter{ $0.type == "Personal"}, id: \.id ){ item in
                     if item.type == "Personal"{
                         
                         HStack{
@@ -52,7 +50,7 @@ struct ExpensesView: View {
             Section("Business Expenses"){
                 
                 
-                ForEach(businessExpenses.businessItems, id: \.id){ item in
+                ForEach(expenseItems.filter { $0.type == "Business"}, id: \.id){ item in
                     
                     
                     
@@ -85,7 +83,7 @@ struct ExpensesView: View {
         func removeItems(at offsets: IndexSet){
             personalExpenses.personalItems.remove(atOffsets: offsets)
         }
-        
+    
         func removeBusinessItems(at offsets: IndexSet){
             businessExpenses.businessItems.remove(atOffsets: offsets)
             
@@ -95,16 +93,16 @@ struct ExpensesView: View {
         
         
     
-    init(transactionDate: Date, sortOrder: [SortDescriptor<ExpenseItem>]) {
-        _expenseItems = Query(filter: #Predicate<ExpenseItem> {
-            expenseItem in
-            expenseItem.date >= transactionDate
-        } , sort: sortOrder)
-    }
+//    init(transactionDate: Date, sortOrder: [SortDescriptor<ExpenseItem>]) {
+//        _expenseItems = Query(filter: #Predicate<ExpenseItem> {
+//            expenseItem in
+//            expenseItem.date >= transactionDate
+//        } , sort: sortOrder)
+//    }
 
 }
 
 #Preview {
-    ExpensesView(transactionDate: .now, sortOrder: [SortDescriptor(\ExpenseItem.name)])
-        .modelContainer(for:ExpenseItem.self)
+    ExpensesView()
+        
 }

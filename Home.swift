@@ -18,43 +18,56 @@ struct Home: View {
     
     var body: some View {
         NavigationStack {
-            ExpensesView(transactionDate: showingRecent ? .now : .distantPast, sortOrder: sortOrder)
+            ExpensesView()
             
             
             
                 .navigationTitle("iExpense")
                 .toolbar {
+                    ToolbarItem(placement: .topBarTrailing){
+                        EditButton()
+                            .padding(.horizontal)
+                            .padding(.trailing )
+                    }
                     
-                    EditButton()
-                        .padding(.horizontal)
-                        .padding(.trailing )
-                    
-                    
-                    Picker("Sort", selection: $sortOrder){
-                        Text("Sort by Amount")
-                            .tag([
-                                SortDescriptor(\ExpenseItem.amount)
-                            ])
+//                    ToolbarItem(placement: .topBarLeading){
+//                        Button(showingRecent ? "Show Everyone" : "Show Upcoming"){
+//                            showingRecent.toggle()
+//                        }
+//                    }
+                    ToolbarItem(placement: .topBarTrailing){
                         
-                        Text("Sort by Date")
-                            .tag([
-                                SortDescriptor(\ExpenseItem.date)
-                            ])
+                        Menu("Sort", systemImage: "arrow.up.arrow.down"){
+                            Picker("Sort", selection: $sortOrder){
+                                Text("Sort by Amount")
+                                    .tag([
+                                        SortDescriptor(\ExpenseItem.amount)
+                                    ])
+                                
+                                Text("Sort by Date")
+                                    .tag([
+                                        SortDescriptor(\ExpenseItem.date)
+                                    ])
+                            }
+                        }
+                    }
+                    
+                    
+                    
+                    
+                    // CHALLENGE 1
+                    // REPLACE .sheet for NavigationLink
+                    ToolbarItem(placement: .bottomBar){
+                        NavigationLink{
+                            
+                            AddView()
+                                .navigationBarBackButtonHidden()
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                        .padding(.trailing)
                     }
                 }
-            
-            
-            // CHALLENGE 1
-            // REPLACE .sheet for NavigationLink
-            NavigationLink{
-                
-                AddView(personalExpenses: personalExpenses, businessExpenses: businessExpenses)
-                    .navigationBarBackButtonHidden()
-            } label: {
-                Image(systemName: "plus")
-            }
-            .padding(.trailing)
-            
         }
     }
     

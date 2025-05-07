@@ -9,14 +9,14 @@ import SwiftUI
 
 struct AddView: View {
     @Environment(\.dismiss) var dismiss // add a dismiss action
-    
+    @Environment(\.modelContext) var modelContext
     @State private var name = "Edit Name"
     @State private var type = "Personal"
     @State private var amount = 0.0
     @State private var currency = "USD"
+
     
-    var personalExpenses : PersonalExpenses
-    var businessExpenses: BusinessExpenses
+    
     
     
     
@@ -65,33 +65,14 @@ struct AddView: View {
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing){
-                    let item = ExpenseItem(name: name, type: type, amount: amount, currency: currency, date: .now)
-                    
-                    // amount field has to be 0.01 or greater
-                    if item.amount >= 0.01{
-   
-                        if item.type == "Personal"{
-                            
                             
                             Button("Save") {
+                                let item = ExpenseItem(name: name, type: type, amount: amount, currency: currency, date: .now)
                                 
-                                
-                                personalExpenses.personalItems.append(item)
+                                modelContext.insert(item)
                                 dismiss() // dismiss sheet when Save btn is selected
-                            }
-                            
-                        } else if item.type == "Business"{
-                            
-                            
-                            Button("Save") {
-                                
-                                
-                                businessExpenses.businessItems.append(item)
-                                dismiss() // dismiss sheet when Save btn is selected
-                            }
-                            
-                        }
                     }
+                            .disabled(amount < 0.01)
                 }
             }
         }
