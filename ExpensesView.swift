@@ -19,6 +19,10 @@ struct ExpensesView: View {
     
     let types = ["Personal", "Business"]
     
+    init(sortOrder: [SortDescriptor<ExpenseItem>]){
+        _expenseItems = Query(sort:sortOrder)
+    }
+    
     @State private var showingAddExpense = false
     
     var body: some View {
@@ -103,6 +107,6 @@ struct ExpensesView: View {
 }
 
 #Preview {
-    ExpensesView()
+    ExpensesView(sortOrder: [SortDescriptor<ExpenseItem>(\.date)])
         
 }

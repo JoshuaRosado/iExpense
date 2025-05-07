@@ -18,7 +18,13 @@ struct Home: View {
     
     var body: some View {
         NavigationStack {
-            ExpensesView()
+            
+            // Passing sortOrder for Sort By button
+            ExpensesView(sortOrder: sortOrder)
+            // Wrapping view with
+                .id(sortOrder)
+            // So when Sort By is updated, the view will update in real time every single time
+                
             
             
             
@@ -30,13 +36,10 @@ struct Home: View {
                             .padding(.trailing )
                     }
                     
-//                    ToolbarItem(placement: .topBarLeading){
-//                        Button(showingRecent ? "Show Everyone" : "Show Upcoming"){
-//                            showingRecent.toggle()
-//                        }
-//                    }
+
                     ToolbarItem(placement: .topBarTrailing){
-                        
+                        // Sort by Button
+                        // Wrapped in Menu to have both options when Picker is tapped
                         Menu("Sort", systemImage: "arrow.up.arrow.down"){
                             Picker("Sort", selection: $sortOrder){
                                 Text("Sort by Amount")
