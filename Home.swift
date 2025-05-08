@@ -12,15 +12,18 @@ struct Home: View {
     
     @State private var personalExpenses = PersonalExpenses()
     @State private var businessExpenses = BusinessExpenses()
+    @State private var selectedType = "All"
+    var typeSelection = ["Personal", "Business", "All"]
     @State private var sortOrder = [SortDescriptor(\ExpenseItem.amount), SortDescriptor(\ExpenseItem.date),
     ]
-    @State private var showingRecent = false
+    @State private var showFiltered = false
+
     
     var body: some View {
         NavigationStack {
             
             // Passing sortOrder for Sort By button
-            ExpensesView(sortOrder: sortOrder)
+            ExpensesView(typeOfTransaction: selectedType,sortOrder: sortOrder)
             // Wrapping view with
                 .id(sortOrder)
             // So when Sort By is updated, the view will update in real time every single time
@@ -36,7 +39,16 @@ struct Home: View {
                             .padding(.trailing )
                     }
                     
-
+                    ToolbarItem(placement: .topBarLeading){
+                        Menu("Filter"){
+                            Picker("Filter", selection: $selectedType ){
+                                ForEach(typeSelection, id: \.self) {
+                                    Text($0)
+                                }
+                            }
+                        }
+                    }
+                    
                     ToolbarItem(placement: .topBarTrailing){
                         // Sort by Button
                         // Wrapped in Menu to have both options when Picker is tapped
